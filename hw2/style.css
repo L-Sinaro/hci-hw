@@ -21,11 +21,16 @@ body, html {
     margin: 10px 0;
 }
 
-.difficultyButton {
+.difficultyButton, .difficultyButton.selected {
     margin: 0 5px;
     padding: 5px 10px;
     font-size: 16px;
     cursor: pointer;
+}
+
+.difficultyButton.selected {
+    background-color: #006400;
+    color: white;
 }
 
 .square {
@@ -56,7 +61,7 @@ button {
     transition: background-color 0.2s;
 }
 
-#startButton:hover, #restartButton:hover {
+#startButton:hover, #restartButton:hover, #nextDifficultyButton:hover {
     background-color: #45a049;
 }
 
@@ -66,7 +71,19 @@ button {
     color: #333;
 }
 
-.difficultyButton.selected {
-    background-color: #006400; /* Darker green to indicate selection */
-    color: white;
+#completionScreen button {
+    margin: 10px; /* Adds space around the buttons */
+    min-width: 150px; /* Ensures buttons have a minimum width */
+}
+
+#completionScreen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#buttonContainer {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* This creates space between the buttons */
 }
