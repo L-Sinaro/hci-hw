@@ -1,0 +1,72 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f0f0;
+}
+
+#startupScreen, #gameScreen, #completionScreen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+#difficultyButtons {
+    margin: 10px 0;
+}
+
+.difficultyButton {
+    margin: 0 5px;
+    padding: 5px 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.square {
+    background-color: #008CBA;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.2s;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    user-select: none;
+}
+
+.square:hover {
+    transform: scale(1.1);
+    background-color: #005f73;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: white;
+    transition: background-color 0.2s;
+}
+
+#startButton:hover, #restartButton:hover {
+    background-color: #45a049;
+}
+
+#result {
+    font-size: 20px;
+    margin: 20px;
+    color: #333;
+}
+
+.difficultyButton.selected {
+    background-color: #006400; /* Darker green to indicate selection */
+    color: white;
+}

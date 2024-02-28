@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Click Speed Test</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="startupScreen">
+    <div>Select Difficulty:</div>
+    <div id="difficultyButtons">
+        <button class="difficultyButton" data-difficulty="1">1</button>
+        <button class="difficultyButton" data-difficulty="2">2</button>
+        <button class="difficultyButton" data-difficulty="3">3</button>
+        <button class="difficultyButton" data-difficulty="4">4</button>
+        <button class="difficultyButton" data-difficulty="5">5</button>
+        <button class="difficultyButton" data-difficulty="6">6</button>
+    </div>
+    <button id="startButton">Start Game</button>
+</div>
+
+<div id="gameScreen" style="display: none;">
+    <div class="square" id="square1"></div>
+    <div class="square" id="square2"></div>
+</div>
+
+<div id="completionScreen" style="display: none;">
+    <p id="result"></p>
+    <button id="restartButton">Restart</button>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
