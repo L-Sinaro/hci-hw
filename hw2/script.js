@@ -22,6 +22,7 @@ function showScreen(screen) {
 }
 
 function adjustDifficulty(level) {
+    selectedDifficulty = parseInt(level, 10); // Update to ensure selectedDifficulty is always current
     let size = 150;
     let distance = 20;
     if (level % 2 === 0) {
@@ -62,6 +63,7 @@ function handleCompletion() {
 difficultyButtons.forEach(button => {
     button.addEventListener('click', function() {
         adjustDifficulty(this.getAttribute('data-difficulty'));
+        highlightSelectedButton(); // Highlight the selected button
     });
 });
 
@@ -74,11 +76,13 @@ restartButton.addEventListener('click', function() {
     times = [];
     clickCount = 0;
     showScreen(startupScreen);
+    highlightSelectedButton(); // Ensure the correct button is highlighted when restarting
 });
 
 nextDifficultyButton.addEventListener('click', function() {
     if (selectedDifficulty < 6) {
-        adjustDifficulty(selectedDifficulty + 1);
+        adjustDifficulty(++selectedDifficulty); // Increment and adjust difficulty
+        highlightSelectedButton(); // Update button highlighting
         times = [];
         clickCount = 0;
         showScreen(gameScreen);
