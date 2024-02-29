@@ -1,18 +1,25 @@
+const startupScreen = document.getElementById('startupScreen');
+const gameScreen = document.getElementById('gameScreen');
+const completionScreen = document.getElementById('completionScreen');
 const startButton = document.getElementById('startButton');
 const restartButton = document.getElementById('restartButton');
 const nextDifficultyButton = document.getElementById('nextDifficultyButton');
 const difficultyButtons = document.querySelectorAll('.difficultyButton');
 const square1 = document.getElementById('square1');
 const square2 = document.getElementById('square2');
-const startupScreen = document.getElementById('startupScreen');
-const gameScreen = document.getElementById('gameScreen');
-const completionScreen = document.getElementById('completionScreen');
 const result = document.getElementById('result');
+
+// New "Start Session" button creation and addition
+startSessionButton.innerText = 'Start Session';
+startSessionButton.id = 'startSessionButton';
+// Insert the "Start Session" button before the "Start Game" button within the startup screen
+startupScreen.insertBefore(startSessionButton, startButton);
 
 let startTime;
 let clickCount = 0;
 let times = [];
 let selectedDifficulty = 1;
+let sessionTimes = []; // Array to store times for each session
 
 function showScreen(screen) {
     startupScreen.style.display = 'none';
@@ -22,7 +29,7 @@ function showScreen(screen) {
 }
 
 function adjustDifficulty(level) {
-    selectedDifficulty = parseInt(level, 10); // Update to ensure selectedDifficulty is always current
+    selectedDifficulty = parseInt(level, 10);
     let size = 150;
     let distance = 20;
     if (level % 2 === 0) {
@@ -51,19 +58,27 @@ function highlightSelectedButton() {
 
 function handleCompletion() {
     let averageTime = times.reduce((a, b) => a + b, 0) / times.length;
-    result.textContent = `Average time per pair of clicks: ${averageTime.toFixed(2)} ms`;
+    sessionTimes.push(averageTime); // Store the average time of the current difficulty
+    if (selectedDifficulty === 6) {
+        let overallAverage = sessionTimes.reduce((a, b) => a + b, 0) / sessionTimes.length;
+        result.textContent += ` Overall average time: ${overallAverage.toFixed(2)} ms`;
+        sessionTimes = []; // Reset session times for a new session
+    } else {
+        result.textContent = `Average time per pair of clicks: ${averageTime.toFixed(2)} ms`;
+    }
     showScreen(completionScreen);
     if (selectedDifficulty < 6) {
         nextDifficultyButton.style.display = 'inline-block';
     } else {
         nextDifficultyButton.style.display = 'none';
+        selectedDifficulty = 0; // Reset difficulty for new session
     }
 }
 
 difficultyButtons.forEach(button => {
     button.addEventListener('click', function() {
         adjustDifficulty(this.getAttribute('data-difficulty'));
-        highlightSelectedButton(); // Highlight the selected button
+        highlightSelectedButton();
     });
 });
 
@@ -72,17 +87,26 @@ startButton.addEventListener('click', function() {
     startTime = new Date();
 });
 
+startSessionButton.addEventListener('click', function() {
+    adjustDifficulty(1); // Automatically start from difficulty 1
+    highlightSelectedButton();
+    times = [];
+    clickCount = 0;
+    showScreen(gameScreen);
+    startTime = new Date();
+});
+
 restartButton.addEventListener('click', function() {
     times = [];
     clickCount = 0;
     showScreen(startupScreen);
-    highlightSelectedButton(); // Ensure the correct button is highlighted when restarting
+    highlightSelectedButton();
 });
 
 nextDifficultyButton.addEventListener('click', function() {
     if (selectedDifficulty < 6) {
-        adjustDifficulty(++selectedDifficulty); // Increment and adjust difficulty
-        highlightSelectedButton(); // Update button highlighting
+        adjustDifficulty(++selectedDifficulty);
+        highlightSelectedButton();
         times = [];
         clickCount = 0;
         showScreen(gameScreen);

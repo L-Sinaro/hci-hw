@@ -87,3 +87,14 @@ button {
     justify-content: center;
     gap: 20px; /* This creates space between the buttons */
 }
+
+#startupScreen button {
+    display: inline-block; /* This will make the buttons sit next to each other if there is enough space */
+    margin-right: 10px; /* This adds some space between the buttons */
+}
+
+/* Additional styling to ensure consistent height and vertical alignment */
+#startupScreen button {
+    vertical-align: top; /* Aligns buttons to the top, in case they have different heights */
+    margin-bottom: 10px; /* This adds some space below the buttons */
+}
