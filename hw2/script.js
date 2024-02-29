@@ -16,10 +16,10 @@ startSessionButton.id = 'startSessionButton';
 startupScreen.insertBefore(startSessionButton, startButton);
 
 let startTime;
-let clickCount = 0;
 let times = [];
 let selectedDifficulty = 1;
 let sessionTimes = []; // Array to store times for each session
+let recording_status = 1
 
 function showScreen(screen) {
     startupScreen.style.display = 'none';
@@ -33,12 +33,14 @@ function adjustDifficulty(level) {
     let size = 150;
     let distance = 20;
     if (level % 2 === 0) {
-        distance = 20 + level * 250;
+        distance = 200 + level * 200;
         size = 150 - (level - 1) * 20;
     } else {
-        distance = 20 + (level - 1) * 100;
+        distance = 200 + (level - 1) * 200;
         size = 150 - level * 20;
     }
+
+    console.log()
 
     square1.style.width = square2.style.width = `${size}px`;
     square1.style.height = square2.style.height = `${size}px`;
@@ -84,21 +86,17 @@ difficultyButtons.forEach(button => {
 
 startButton.addEventListener('click', function() {
     showScreen(gameScreen);
-    startTime = new Date();
 });
 
 startSessionButton.addEventListener('click', function() {
     adjustDifficulty(1); // Automatically start from difficulty 1
     highlightSelectedButton();
     times = [];
-    clickCount = 0;
     showScreen(gameScreen);
-    startTime = new Date();
 });
 
 restartButton.addEventListener('click', function() {
     times = [];
-    clickCount = 0;
     showScreen(startupScreen);
     highlightSelectedButton();
 });
@@ -108,22 +106,24 @@ nextDifficultyButton.addEventListener('click', function() {
         adjustDifficulty(++selectedDifficulty);
         highlightSelectedButton();
         times = [];
-        clickCount = 0;
         showScreen(gameScreen);
         startTime = new Date();
     }
 });
 
 function squareClicked() {
-    clickCount++;
-    if (clickCount % 2 === 0) {
+    if (recording_status === 0) {
+        startTime = new Date();
+        recording_status = 1
+    }
+    else {
         let endTime = new Date();
         let timeTaken = endTime - startTime;
         times.push(timeTaken);
         startTime = new Date();
-        if (times.length === 10) {
-            handleCompletion();
-        }
+    }
+    if (times.length === 10) {
+        handleCompletion();
     }
 }
 
