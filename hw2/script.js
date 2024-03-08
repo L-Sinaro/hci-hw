@@ -40,8 +40,6 @@ function adjustDifficulty(level) {
         size = 150 - level * 20;
     }
 
-    console.log()
-
     square1.style.width = square2.style.width = `${size}px`;
     square1.style.height = square2.style.height = `${size}px`;
     square1.style.marginRight = `${distance}px`;
@@ -91,12 +89,13 @@ startButton.addEventListener('click', function() {
 startSessionButton.addEventListener('click', function() {
     adjustDifficulty(1); // Automatically start from difficulty 1
     highlightSelectedButton();
-    times = [];
+    initialize();
     showScreen(gameScreen);
 });
 
 restartButton.addEventListener('click', function() {
-    times = [];
+    initialize();
+    sessionTimes = [];
     showScreen(startupScreen);
     highlightSelectedButton();
 });
@@ -105,11 +104,16 @@ nextDifficultyButton.addEventListener('click', function() {
     if (selectedDifficulty < 6) {
         adjustDifficulty(++selectedDifficulty);
         highlightSelectedButton();
-        times = [];
+        initialize();
         showScreen(gameScreen);
         startTime = new Date();
     }
 });
+
+function initialize() {
+    recording_status = 0;
+    times = [];
+}
 
 function squareClicked() {
     if (recording_status === 0) {

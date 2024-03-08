@@ -61,7 +61,7 @@ button {
     transition: background-color 0.2s;
 }
 
-#startButton:hover, #restartButton:hover, #nextDifficultyButton:hover {
+#startSessionButton:hover, #startButton:hover, #restartButton:hover, #nextDifficultyButton:hover {
     background-color: #45a049;
 }
 
