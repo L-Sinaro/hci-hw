@@ -1,0 +1,21 @@
+[
+    {
+      "name": "Sara Norman",
+      "id": "5344-9709",
+      "doctor_name": "Dr. Jason Rosenberg",
+      "doctor_phone_number": "579-0432",
+      "low_glucose_level": 80,
+      "normal_glucose_level": "80-140",
+      "high_glucose_level": 140
+    },
+    {
+        "name": "Gregg Norman",
+        "id": "1275-4307",
+        "doctor_name": "Dr. Nikhil Singh",
+        "doctor_phone_number": "334-2309",
+        "low_glucose_level": 70,
+        "normal_glucose_level": "70-140",
+        "high_glucose_level": 120
+    }
+  ]
+  
