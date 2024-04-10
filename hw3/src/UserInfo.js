@@ -3,18 +3,38 @@ import React, { useState } from 'react';
 const UserInfo = ({ user }) => {
   const [hasTakenReading, setHasTakenReading] = useState(null);
   const [bloodSugarReading, setBloodSugarReading] = useState('');
+  const [readingMessage, setReadingMessage] = useState('');
 
   if (!user) return <div>No user found.</div>;
 
-  const handleReadingConfirmation = (answer) => {
-    setHasTakenReading(answer);
+  const handleReadingConfirmation = (hasTaken) => {
+    setHasTakenReading(hasTaken);
+    // Clear the reading and message if the user hasn't taken the reading yet.
+    if (!hasTaken) {
+      setBloodSugarReading('');
+      setReadingMessage('');
+    }
+  };
+
+  const evaluateReading = (reading) => {
+    const numericReading = parseInt(reading, 10);
+    if (numericReading < user.low_glucose_level) {
+      setReadingMessage("Your glucose level is too low.");
+    } else if (numericReading > user.high_glucose_level) {
+      setReadingMessage("Your glucose level is too high.");
+    } else {
+      setReadingMessage("Your glucose level is normal.");
+    }
   };
 
   const handleReadingSubmission = () => {
-    // Here you would typically send the reading to a server or otherwise process it
-    console.log(`Blood sugar reading recorded: ${bloodSugarReading}`);
-    setBloodSugarReading('');
-    setHasTakenReading(null);
+    if (bloodSugarReading !== '') {
+      evaluateReading(bloodSugarReading);
+      console.log(`Blood sugar reading recorded: ${bloodSugarReading}`);
+      // Optionally reset the blood sugar reading input and the prompt
+      // setBloodSugarReading('');
+      // setHasTakenReading(null);
+    }
   };
 
   return (
@@ -49,6 +69,11 @@ const UserInfo = ({ user }) => {
             max="999" 
           />
           <button className="btn btn-success mt-2" onClick={handleReadingSubmission}>Submit</button>
+          {readingMessage && (
+            <div className={`alert ${readingMessage.includes('too low') || readingMessage.includes('too high') ? 'alert-danger' : 'alert-info'} mt-2`}>
+              {readingMessage}
+            </div>
+          )}
         </div>
       )}
       {hasTakenReading === false && (
@@ -58,7 +83,7 @@ const UserInfo = ({ user }) => {
         </div>
       )}
     </div>
-  );  
+  );
 };
 
 export default UserInfo;
