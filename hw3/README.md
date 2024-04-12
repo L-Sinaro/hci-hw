@@ -1,70 +1,38 @@
-# Getting Started with Create React App
+# Diabetes Monitoring System
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Introduction
 
-## Available Scripts
+The Diabetes Monitoring System is a web-based application designed to assist individuals in monitoring their blood glucose levels. The system allows users to easily log their glucose readings, receive real-time feedback based on their results, and access detailed help at any point within the application.
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+### User Login
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Name Selection:** Upon opening the application, users are presented with a list of names fetched from a predefined JSON file. Each user can click on their name to log in to the system.
+- **Help Tooltip:** A help message, "Please select your name to display your information," guides new users in logging in.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Dashboard
 
-### `npm test`
+- **Glucose Reading Input:** Once logged in, users are prompted to input their daily glucose reading. The system accepts numeric inputs ranging from 0 to 999.
+- **Immediate Feedback:** Based on the glucose reading:
+  - **Normal Range:** Users receive a confirmation that their glucose level is normal.
+  - **Low/High Levels:** Users are alerted if their readings are too low or too high. Specific instructions are provided, such as consuming sugar or contacting their doctor, respectively.
+  - **Additional Questions for High Levels:** If the reading is too high, users are asked about the presence of ketones in their urine.
+  - **Explanation Request:** For abnormal readings, users are prompted to explain possible reasons for their abnormal glucose levels (e.g., meal intake, medication, etc.).
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Help System
 
-### `npm run build`
+- **Interactive Help Button:** A question mark icon fixed at the bottom right corner of the application serves as a help button. Clicking this button toggles a popover containing helpful information about the current screen or feature.
+- **Dynamic Content:** The help content changes depending on the context or current view, providing relevant information to assist users in using the application effectively.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Accessibility and User Experience
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- **Responsive Design:** The application is fully responsive, ensuring that it is accessible and usable on a variety of devices and screen sizes.
+- **Easy Navigation:** Clear and concise navigation options are provided, making it easy for users to find and use different features of the system.
+- **Visual Feedback:** Color-coded alerts and messages provide visual cues that help users quickly understand their glucose levels and any required actions.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Technology Stack
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- **React:** Utilizes React for building the user interface, ensuring a responsive and dynamic experience for users.
+- **Bootstrap:** Used for styling and to make the application responsive and accessible.
+- **React Icons:** Provides icons used throughout the application for intuitive visual cues.

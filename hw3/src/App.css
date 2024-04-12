@@ -50,3 +50,11 @@
   z-index: 1000; /* Ensure it's above other content */
 }
 
+.help-content {
+  transition: opacity 0.3s ease-in-out;
+  opacity: 0; /* Initial state */
+}
+
+.help-content.visible {
+  opacity: 1; /* Visible state */
+}

@@ -106,7 +106,7 @@ const UserInfo = ({ user }) => {
       {hasTakenReading === false && (
         <div className="text-center mt-3">
           <p>Please take your blood sugar reading immediately.</p>
-          <button className="btn btn-success" onClick={() => setHasTakenReading(true)}>I've taken it</button>
+          <button className="btn btn-success" onClick={() => setHasTakenReading(true)}>I have taken it</button>
         </div>
       )}
 

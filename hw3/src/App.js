@@ -14,13 +14,13 @@ function App() {
   const [submissionMessage, setSubmissionMessage] = useState('');
   const [showHelp, setShowHelp] = useState(false);
 
+  const toggleHelp = () => {
+    setShowHelp(prev => !prev); // Toggle the visibility of the help content
+  };
+
   const handleLogin = (fullName) => {
     const user = usersData.find(user => user.name === fullName);
     setCurrentUser(user);
-  };
-
-  const toggleHelp = () => {
-    setShowHelp(prevShowHelp => !prevShowHelp);
   };
 
   const handleLogout = () => {
@@ -46,18 +46,27 @@ function App() {
         style={{
           position: 'fixed',
           bottom: '20px',
-          right: '20px', // Change from left to right
-          fontSize: '24px', // Bigger font size for a bigger icon
-          padding: '10px', // Increase padding for a larger button
-          zIndex: '1000' // Ensure it's above other content
+          right: '20px',
+          fontSize: '24px',
+          zIndex: '1050' // Higher z-index to keep it on top
         }}
       >
         <FaQuestionCircle />
       </button>
 
+
       {showHelp && (
-        <div className="popover-content">
-          {/* Your help content goes here */}
+        <div style={{
+          position: 'fixed',
+          bottom: '70px', // Position it above the button
+          right: '20px',
+          backgroundColor: 'white',
+          padding: '10px 20px',
+          borderRadius: '8px',
+          boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+          zIndex: '1050' // Same z-index to keep it on top
+        }}>
+          Please select your name to display your information.
         </div>
       )}
     </div>
