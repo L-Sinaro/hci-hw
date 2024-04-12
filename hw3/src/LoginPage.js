@@ -1,27 +1,37 @@
-// Inside LoginPage.js
 import React, { useState } from 'react';
+import "./LoginPage.css"
 
-const LoginPage = ({ onLogin }) => {
+const LoginPage = ({ onLogin, usersData }) => {
   const [firstName, setFirstName] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onLogin(firstName);
+    // Check if the first name exists in the usersData
+    const userExists = usersData.some(user => user.name.split(' ')[0].toLowerCase() === firstName.toLowerCase());
+
+    if (userExists) {
+      onLogin(firstName);
+      setErrorMessage(''); // Clear any previous error message
+    } else {
+      setErrorMessage('First name not in the database, please try again.');
+    }
   };
 
   return (
-    <div className="d-flex justify-content-center align-items-center" style={{ height: '80vh' }}> {/* Adjusted for centering */}
-      <form onSubmit={handleSubmit} className="form-inline">
-        <input
-          type="text"
-          className="form-control mb-2 mr-sm-2"
-          value={firstName}
-          onChange={(e) => setFirstName(e.target.value)}
-          placeholder="Enter your first name"
-          required
-        />
-        <button type="submit" className="btn btn-primary mb-2">Login</button>
-      </form>
+    <div className="d-flex flex-column align-items-center justify-content-center" style={{ minHeight: '100vh' }}>
+      <h2>Select Your Name</h2>
+      <div>
+        {usersData.map((user, index) => (
+          <button
+            key={index}
+            className="btn btn-outline-primary m-2"
+            onClick={() => onLogin(user.name)}
+          >
+            {user.name}
+          </button>
+        ))}
+      </div>
     </div>
   );
 };
