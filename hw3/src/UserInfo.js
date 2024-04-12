@@ -88,7 +88,7 @@ const UserInfo = ({ user }) => {
               style={{ width: '300px' }}
             />
           </div>
-          <button className="btn btn-success mt-2" onClick={handleReadingSubmission}>Submit</button>
+          <button className="btn btn-success mt-2" onClick={handleReadingSubmission} title="Click this button to submit your blood sugar reading.">Submit</button>
           {readingMessage && (
             <div className={`alert ${readingMessage.includes('too low') ? 'alert-danger' : readingMessage.includes('too high') ? 'alert-warning' : 'alert-success'} mt-2`}>
               {readingMessage.split('\n').map((line, index) => (
@@ -119,6 +119,7 @@ const UserInfo = ({ user }) => {
             value={explanation}
             onChange={e => setExplanation(e.target.value)}
             rows="3"
+            title="Enter any factors that might have affected your glucose reading here"
           ></textarea>
           <div className="d-flex justify-content-center"><button className="btn btn-success mt-2" onClick={handleExplanationSubmission}>
             Submit Explanation
